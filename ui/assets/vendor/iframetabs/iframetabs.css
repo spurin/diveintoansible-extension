@@ -1,0 +1,84 @@
+#tabs {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+}
+
+    #tabs li {
+        float: left;
+        display: block;
+        padding: 5px;
+        background-color: #bbb;
+        margin-right: 5px;
+    }
+
+        #tabs li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        #tabs li.current {
+            background-color: #e1e1e1;
+        }
+
+            #tabs li.current a {
+                color: #000;
+                text-decoration: none;
+            }
+
+        #tabs li a.remove {
+            color: #f00;
+            color: #808080;
+            margin-left: 10px;
+        }
+
+#main {
+    width: 100%;
+    margin: 0px auto;
+    overflow: hidden;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+#wrapper {
+    width: 100%;
+    height: 100%;
+}
+#wrapper, #doclist {
+    margin: 0 20px 0 0;
+}
+.tabiframe {
+    width: 100%;
+    height: calc(100vh - 25px);
+    background-color: white;
+    padding: 0px;
+    border: 1px solid lightgray;
+}
+.input-container {
+    width: 250px;
+    border: 1px solid #a9a9a9;
+    float: left;
+    background-color: white;
+}
+
+    .input-container input:focus, .input-container input:active {
+        outline: none;
+    }
+
+    .input-container input {
+        width: 80%;
+        float: left;
+        border: none;
+    }
+
+    .input-container .embutton, .embutton:hover {
+        float: right;
+        background-color: darkorange;
+        color: white;
+        text-decoration: none;
+        width: 20px;
+        text-align: center;
+        vertical-align: middle;
+        border: none;
+        cursor: pointer
+    }

@@ -1,0 +1,16 @@
+{
+  "icon": "ansible.svg",
+  "vm": {
+    "composefile": "docker-compose.yaml",
+    "exposes": {
+      "socket": "extension-diveintoansible.sock"
+    }
+  },
+  "ui": {
+    "dashboard-tab": {
+      "title": "Dive Into Ansible",
+      "src": "index.html",
+      "root": "ui"
+    }
+  }
+}

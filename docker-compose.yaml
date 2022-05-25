@@ -1,0 +1,203 @@
+services:
+  # Autoconfigure SSH Keys and Default configuration files for users
+  ssh-keys-and-config:
+    image: kroniak/ssh-client
+    deploy:
+      restart_policy:
+        max_attempts: 0
+    volumes:
+     - config:/config
+    command: |
+      bash -c 'rm -rf /config/*; ssh-keygen -f /config/guest_ssh -P "" <<< y; cp -rf /config/guest_ssh /config/root_ssh; cp -rf /config/guest_ssh.pub /config/root_ssh.pub; echo ansible > /config/guest_name; echo password > /config/guest_passwd; echo "/bin/bash" > /config/guest_shell; echo password > /config/root_passwd'
+
+  ubuntu-c:
+    hostname: ubuntu-c
+    container_name: ubuntu-c
+    volumes:
+     - config:/config
+     - shared:/shared
+     - ansible_home_ubuntu-c:/home/ansible
+     - root_home_ubuntu-c:/root
+    image: spurin/diveintoansible:ansible
+    ports: 
+     - 2221:22
+     - 7681:7681
+    privileged: true
+    depends_on:
+      ssh-keys-and-config:
+        condition: service_completed_successfully
+    networks:
+     - diveinto.io
+
+  ubuntu1:
+    hostname: ubuntu1
+    container_name: ubuntu1
+    volumes:
+     - config:/config
+     - shared:/shared
+     - ansible_home_ubuntu1:/home/ansible
+     - root_home_ubuntu1:/root
+    image: spurin/diveintoansible:ubuntu
+    ports: 
+     - 2222:22
+     - 7682:7681
+    privileged: true
+    depends_on:
+      ssh-keys-and-config:
+        condition: service_completed_successfully
+    networks:
+     - diveinto.io
+
+  ubuntu2:
+    hostname: ubuntu2
+    container_name: ubuntu2
+    volumes:
+     - config:/config
+     - shared:/shared
+     - ansible_home_ubuntu2:/home/ansible
+     - root_home_ubuntu2:/root
+    image: spurin/diveintoansible:ubuntu
+    ports: 
+     - 2223:22
+     - 7683:7681
+    privileged: true
+    depends_on:
+      ssh-keys-and-config:
+        condition: service_completed_successfully
+    networks:
+     - diveinto.io
+
+  ubuntu3:
+    hostname: ubuntu3
+    container_name: ubuntu3
+    volumes:
+     - config:/config
+     - shared:/shared
+     - ansible_home_ubuntu3:/home/ansible
+     - root_home_ubuntu3:/root
+    image: spurin/diveintoansible:ubuntu
+    ports: 
+     - 2224:22
+     - 7684:7681
+    privileged: true
+    depends_on:
+      ssh-keys-and-config:
+        condition: service_completed_successfully
+    networks:
+     - diveinto.io
+
+  centos1:
+    hostname: centos1
+    container_name: centos1
+    volumes:
+     - config:/config
+     - shared:/shared
+     - ansible_home_centos1:/home/ansible
+     - root_home_centos1:/root
+    image: spurin/diveintoansible:centos
+    ports: 
+     - 2225:22
+     - 7685:7681
+    privileged: true
+    depends_on:
+      ssh-keys-and-config:
+        condition: service_completed_successfully
+    networks:
+     - diveinto.io
+
+  centos2:
+    hostname: centos2
+    container_name: centos2
+    volumes:
+     - config:/config
+     - shared:/shared
+     - ansible_home_centos2:/home/ansible
+     - root_home_centos2:/root
+    image: spurin/diveintoansible:centos
+    ports: 
+     - 2226:22
+     - 7686:7681
+    privileged: true
+    depends_on:
+      ssh-keys-and-config:
+        condition: service_completed_successfully
+    networks:
+     - diveinto.io
+
+  centos3:
+    hostname: centos3
+    container_name: centos3
+    volumes:
+     - config:/config
+     - shared:/shared
+     - ansible_home_centos3:/home/ansible
+     - root_home_centos3:/root
+    image: spurin/diveintoansible:centos
+    ports: 
+     - 2227:22
+     - 7687:7681
+    privileged: true
+    depends_on:
+      ssh-keys-and-config:
+        condition: service_completed_successfully
+    networks:
+     - diveinto.io
+
+  # Docker in Docker
+  #
+  # Usage: on host that wishes to use docker
+  #
+  # sudo apt-get update
+  # sudo apt -y install docker.io
+  # export DOCKER_HOST=tcp://docker:2375
+  # docker ps -a
+  #
+  docker:
+    hostname: docker
+    container_name: docker
+    image: spurin/diveintoansible:dind
+    privileged: yes
+    volumes:
+     - shared:/shared
+    networks:
+     - diveinto.io
+
+  portal:
+    hostname: portal
+    container_name: portal
+    image: spurin/diveintoansible:portal
+    environment:
+     - NGINX_ENTRYPOINT_QUIET_LOGS=1
+    depends_on:
+     - centos1
+     - centos2
+     - centos3
+     - ubuntu1
+     - ubuntu2
+     - ubuntu3
+    ports:
+     - "1000:80"
+    networks:
+     - diveinto.io
+
+volumes:
+  config:
+  shared:
+  ansible_home_ubuntu-c:
+  ansible_home_ubuntu1:
+  ansible_home_ubuntu2:
+  ansible_home_ubuntu3:
+  ansible_home_centos1:
+  ansible_home_centos2:
+  ansible_home_centos3:
+  root_home_ubuntu-c:
+  root_home_ubuntu1:
+  root_home_ubuntu2:
+  root_home_ubuntu3:
+  root_home_centos1:
+  root_home_centos2:
+  root_home_centos3:
+
+networks:
+  diveinto.io:
+    name: diveinto.io
