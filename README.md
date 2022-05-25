@@ -24,7 +24,7 @@ In the future, you'll be able to execute the commands ```docker extension``` by 
 
 Download the docker-extension binary from https://github.com/docker/extensions-sdk/releases/tag/v0.2.4 and then configure as a plugin using the steps outlined here - https://docs.docker.com/desktop/extensions-sdk/#prerequisites (essentially, moving the docker-extension file to ~/.docker/cli-plugins).
 
-Once complete, from this repository you should be able to execute the following to install and uninstall the extension -
+Once complete, from this repository (if you want to build locally) you should be able to use the following commands -
 
 #### If you wish to build the extension yourself (this can be skipped and instead it will pull my hosted version on Docker Hub)
 ```
