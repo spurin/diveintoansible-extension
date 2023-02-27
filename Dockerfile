@@ -1,6 +1,6 @@
 FROM alpine
 LABEL org.opencontainers.image.title="Dive Into Ansible" \
-    org.opencontainers.image.description="Dive Into Ansible Lab Environment Docker Extension" \
+    org.opencontainers.image.description="Run a Full Ansible Lab Environment within Docker Desktop!" \
     org.opencontainers.image.vendor="James Spurin" \
     com.docker.desktop.extension.api.version=">= 0.2.3" \
     com.docker.desktop.extension.icon="https://raw.githubusercontent.com/spurin/diveintoansible-extension/main/ansible.svg" \
