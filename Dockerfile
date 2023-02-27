@@ -8,6 +8,7 @@ LABEL org.opencontainers.image.title="Dive Into Ansible" \
     com.docker.extension.detailed-description="Instant Ansible Lab within Docker Desktop" \
     com.docker.extension.detailed-description="<p><h1>Dive Into Ansible with the Dive Into Ansible Lab</h1>Run Ansible, along with Ubuntu and CentOS hosts in this awesome Docker Desktop Lab Environment Extension that includes Reverse Proxies for accessing Web Services!</p>" \
     com.docker.extension.publisher-url="https://diveinto.com" \
+    com.docker.extension.categories="utility-tools" \
     com.docker.extension.additional-urls="" \
     com.docker.extension.changelog="Initial Release"
 
