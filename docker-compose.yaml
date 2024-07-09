@@ -94,7 +94,7 @@ services:
      - shared:/shared
      - ansible_home_centos1:/home/ansible
      - root_home_centos1:/root
-    image: spurin/diveintoansible:centos
+    image: spurin/diveintoansible:centos_stream
     ports: 
      - 2225:22
      - 7685:7681
@@ -113,7 +113,7 @@ services:
      - shared:/shared
      - ansible_home_centos2:/home/ansible
      - root_home_centos2:/root
-    image: spurin/diveintoansible:centos
+    image: spurin/diveintoansible:centos_stream
     ports: 
      - 2226:22
      - 7686:7681
@@ -132,7 +132,7 @@ services:
      - shared:/shared
      - ansible_home_centos3:/home/ansible
      - root_home_centos3:/root
-    image: spurin/diveintoansible:centos
+    image: spurin/diveintoansible:centos_stream
     ports: 
      - 2227:22
      - 7687:7681

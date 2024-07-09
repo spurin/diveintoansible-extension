@@ -1,5 +1,5 @@
-MakefileIMAGE?=spurin/diveintoansible-extension
-TAG=1.0.3
+IMAGE?=spurin/diveintoansible-extension
+TAG=1.0.4
 
 BUILDER=buildx-multi-arch
 

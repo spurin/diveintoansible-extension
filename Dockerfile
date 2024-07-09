@@ -10,7 +10,7 @@ LABEL org.opencontainers.image.title="Dive Into Ansible" \
     com.docker.extension.publisher-url="https://diveinto.com" \
     com.docker.extension.categories="utility-tools" \
     com.docker.extension.additional-urls='[{"title":"https://github.com/spurin/diveintoansible-lab","url":"https://github.com/spurin/diveintoansible-lab"}]' \
-    com.docker.extension.changelog="Update SSH Keys Script"
+    com.docker.extension.changelog="Update CentOS to CentOS Stream"
 
 COPY docker-compose.yaml .
 COPY metadata.json .
